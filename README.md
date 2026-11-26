@@ -44,3 +44,11 @@ Les segments de la fibre moyenne sont rigides et articulés aux lignes de pliage
 - Générer la pièce, contrôler les dimensions, appliquer puis simuler les plis. Le format de sauvegarde ne change pas : les paramètres géométriques générés sont conservés sous forme de longueurs et angles ; les champs du calculateur et le brouillon libre non validé ne sont pas sauvegardés.
 - Le modèle n'intègre ni retour élastique, ni facteur K, ni rayon réel des petits plis, ni tonnage. Les avertissements sur le V ne valident pas la faisabilité. Les collisions 2D échantillonnées ne couvrent pas le contact local ni les manipulations ; la recherche automatique reste limitée à 8 plis.
 - Tests : `npm test` (18 cas).
+
+## V5 — butées arrière et rendu industriel
+
+- Vue 3D par défaut, surfaces métalliques ombrées, bandes de serrage décoratives, épaisseur visible sur chaque côté de la tôle (jonctions simplifiées), deux doigts de butée illustratifs. Retour à la coupe 2D avec le bouton Vue 2D.
+- Onglet Plieuse : butée désactivée (valeur par défaut, y compris après migration), automatique ou X manuel. X positif vers l’arrière ; R = cote du dessus du doigt par rapport au dessus de la matrice. X auto = abscisse du bord terminal le plus en arrière au début du pli + demi-épaisseur + 0,1 mm, approximation géométrique. Retrait linéaire durant le premier quart de l’animation. Dimensions et limites X mémorisées avec chaque presse et dans le JSON.
+- Contrôle de collision avec la coupe rectangulaire du doigt et dépassement de la plage X ; pas de contrôle de mise en appui, de déplacement en Z, de support de butée, ni de trajectoire de manutention. La coupe ignore la position longitudinale des doigts (peut signaler des conflits qui n’existent pas en 3D). Ne jamais utiliser X calculé comme instruction machine.
+- Cinq références nominales supplémentaires (quatre AMADA AFH-ATC, une TRUMPF EV026). Sources affichées ; aucun contour constructeur automatique. Les valeurs du PDF AMADA 2021 ont été relevées dans son tableau textuel ; la planche graphique n’a pas pu être consultée.
+- 23 tests géométriques et 1 test d’intégration avec DOM/canvas simulés. Le rendu réel et les compilations natives restent à vérifier.
