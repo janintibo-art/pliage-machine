@@ -122,3 +122,8 @@ Dans Tôle à plat → Sur la presse, choisir le seuil de proximité (0 à 20 mm
 - Réglages du plan répartis en quatre panneaux contextuels (Contour, Découpes, Plis, Encoches) ; les modes de dessin ouvrent les paramètres correspondants. Boutons de retour au plan et d’accès aux contrôles.
 - Mode atelier : masquer temporairement la navigation principale pour travailler sur le dessin ou la simulation ; bouton de sortie dans la barre du plan. Vues pièce pliée et presse sur toute la largeur ; réglages caméra et recherche de gamme repliables. Aucun changement des formats de sauvegarde ou des moteurs de calcul.
 - Les modèles restent indicatifs et ne valident pas la sécurité du pliage réel.
+
+## V25 — Passerelle inter-applications
+- Sauvegarder → Projets → Échanger une pièce : export et import JSON de géométrie enregistrée, avec résumé et confirmation avant remplacement. Le format versionné est décrit dans `ECHANGE-V25.md` (exemples profil simple et tôle complexe).
+- Un import ne remplace que le type de pièce sélectionné ; presse, outillage, bibliothèques et autre type de pièce sont conservés. Enregistrer ses brouillons avant import. Aucun calcul externe, réseau ou commande machine. La compatibilité avec l'autre logiciel nécessite un adaptateur dans celui-ci.
+- Export Android par sélecteur de documents, nom distinct de la sauvegarde complète ; Windows par téléchargement local. Les limitations de simulation existantes restent inchangées.
