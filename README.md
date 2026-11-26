@@ -106,3 +106,9 @@ Dans Tôle à plat > Sur la presse, le mode Habillage détaillé affiche des bri
 - Recherche par référence, marque et type ; aperçus en coupe et extrusion illustrative des profils enregistrés.
 - Import DXF ASCII d'un contour fermé unique, sans découpe, avec unité, calque et origine XY renseignés par l'utilisateur ; 100 sommets maximum. Les arcs sont polygonalisés. Vérifier la géométrie et l'origine avant enregistrement.
 - Aucun changement de moteur de pliage, de collision ou de format de sauvegarde. Les longueurs d'aperçu ne sont pas des longueurs de montage.
+
+### V21 — Montage multiposte
+- Dans Tôle à plat > Sur la presse > Montage multiposte : ajouter jusqu’à 12 postes (80 segments au total), choisir les poinçons et matrices montables, saisir le centre longitudinal X et les listes de longueurs séparées par des points-virgules. Les segments d’une même rangée et d’un même poste sont jointifs ; les espaces entre postes sont libres.
+- Affecter le pli actif à un poste. Le décalage longitudinal est relatif au centre de ce poste. Les deux rangées ont des longueurs indépendantes, mais un centre commun. Tous les postes sont représentés et testés contre la pièce. Le montage est limité aux hauteurs de référence identiques (pas d’adaptateurs), les segments sont des extrusions de contours, sans contrôle des fixations, ni de compatibilité physique entre outils.
+- La recherche de gamme conserve les affectations en testant les ordres et orientations ; elle ne choisit pas automatiquement les postes. Les réglages restent temporaires et les affectations sont réinitialisées si le plan change ou si un poste est supprimé. Le montage n’est pas inclus dans le JSON.
+- Les limites V15–V18 restent applicables : échantillonnage, contacts de formage et charnières idéalisés, pas de validation de production.
