@@ -33,11 +33,19 @@ jobs:
         with:
           gradle-version: '8.9'
       - run: gradle -p android assembleDebug --stacktrace
-      - run: mkdir -p output && cp android/app/build/outputs/apk/debug/app-debug.apk output/Pliage-Machine-v5.apk
+      - name: Préparer le fichier APK versionné
+        id: apk
+        shell: bash
+        run: |
+          version=$(sed -nE 's/.*versionCode ([0-9]+).*/\1/p' android/app/build.gradle)
+          [[ "$version" =~ ^[0-9]+$ ]] || exit 1
+          mkdir -p output
+          cp android/app/build/outputs/apk/debug/app-debug.apk "output/Pliage-Machine-v${version}.apk"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with:
-          name: Pliage-Machine-APK-v5
-          path: output/Pliage-Machine-v5.apk
+          name: Pliage-Machine-APK-v${{ steps.apk.outputs.version }}
+          path: output/Pliage-Machine-v${{ steps.apk.outputs.version }}.apk
           if-no-files-found: error
   windows:
     name: EXE Windows
@@ -52,8 +60,17 @@ jobs:
       - run: npm run dist:win
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Identifier le fichier EXE configuré
+        id: exe
+        shell: pwsh
+        run: |
+          $file = (Get-Content package.json -Raw | ConvertFrom-Json).build.portable.artifactName
+          if ($file -notmatch '^Pliage-Machine-v[0-9]+\.exe$') { throw "Nom EXE inattendu : $file" }
+          if (!(Test-Path -LiteralPath "dist/$file" -PathType Leaf)) { throw "EXE absent : dist/$file" }
+          "file=$file" >> $env:GITHUB_OUTPUT
+          "name=$($file -replace '^Pliage-Machine-', 'Pliage-Machine-EXE-' -replace '\.exe$', '')" >> $env:GITHUB_OUTPUT
       - uses: actions/upload-artifact@v4
         with:
-          name: Pliage-Machine-EXE-v5
-          path: dist/Pliage-Machine-v5.exe
+          name: ${{ steps.exe.outputs.name }}
+          path: dist/${{ steps.exe.outputs.file }}
           if-no-files-found: error
