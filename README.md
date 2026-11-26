@@ -60,3 +60,6 @@ Les segments de la fibre moyenne sont rigides et articulés aux lignes de pliage
 - Enregistrer et simuler transmet le profil au moteur existant. La séquence est conservée si les longueurs et angles restent exactement identiques.
 - Limites inchangées : 30 plis, section constante et lignes de pli parallèles ; pas de découpes, perçages ou plis non parallèles. Les positions à plat sont purement géométriques. Aucune validation de sécurité machine. Les modifications non enregistrées ne sont pas conservées en quittant l’éditeur.
 - Détails visuels supplémentaires de la presse, hors modèle de collision.
+
+## V11 — Tôle à plat
+Éditeur indépendant des profils de simulation : contour polygonal fermé, coordonnées XY, perçages et rectangles arrondis, encoches de bord, annulation/rétablissement, enregistrement dans le projet JSON. Deux exemples fictifs non cotés pour la fabrication. La validation vérifie les croisements, les découpes hors contour et leurs chevauchements avec des arcs polygonalisés ; elle ne constitue pas une validation industrielle. Pas encore de pliage multidirectionnel, de collision 3D ni de transfert de ce plan à la presse.
