@@ -1,0 +1,56 @@
+name: Compiler APK et EXE
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check web/app.js && node --check web/engine.js && node --check desktop/main.js && npm test
+  android:
+    name: APK Android
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - run: gradle -p android assembleDebug --stacktrace
+      - run: mkdir -p output && cp android/app/build/outputs/apk/debug/app-debug.apk output/Pliage-Machine-v1.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Pliage-Machine-APK-v1
+          path: output/Pliage-Machine-v1.apk
+          if-no-files-found: error
+  windows:
+    name: EXE Windows
+    needs: tests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run dist:win
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Pliage-Machine-EXE-v1
+          path: dist/Pliage-Machine-v1.exe
+          if-no-files-found: error
