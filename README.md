@@ -35,3 +35,12 @@ Les segments de la fibre moyenne sont rigides et articulés aux lignes de pliage
 - 8 références nominales constructeur ; pas de géométrie fabricant certifiée. Les profils nécessitent une saisie utilisateur avant montage. Les sources sont affichées dans l’éditeur ; contours à vérifier.
 - Création de contour par points sur grille, saisie des coordonnées toujours possible.
 - Sauvegardes JSON V1/V2 conservées ; profils de presse inclus dans les exports.
+
+## V4 — dessin libre et grands rayons
+
+- Pièce : choisir Dessin libre XY, effacer le profil préchargé si nécessaire, toucher la grille ou saisir les coordonnées en mm, puis convertir en cotes et angles. Appliquer la pièce pour sauvegarder et simuler. La conversion normalise le premier côté à l'horizontale et supprime les points collinéaires. Maximum 30 plis.
+- Vue À plat : flan rectangulaire schématique avec lignes de pli et longueur théorique, sans déduction de pliage industrielle.
+- Grands rayons : sélectionner rayon intérieur/extérieur/mi-épaisseur, angle total, épaisseur, angle intérieur minimal ou nombre imposé, sens et extensions droites. Le modèle est un polygone tangent de rayon à mi-épaisseur R. Pour N plis, delta = angle total/N, pas = 2R tan(delta/2), première et dernière portions = demi-pas + extension. Écart radial maximal = R(sec(delta/2)−1). Les positions sont mesurées depuis le bord théorique, pas des consignes de butées. Comparaison facultative avec le flan disponible.
+- Générer la pièce, contrôler les dimensions, appliquer puis simuler les plis. Le format de sauvegarde ne change pas : les paramètres géométriques générés sont conservés sous forme de longueurs et angles ; les champs du calculateur et le brouillon libre non validé ne sont pas sauvegardés.
+- Le modèle n'intègre ni retour élastique, ni facteur K, ni rayon réel des petits plis, ni tonnage. Les avertissements sur le V ne valident pas la faisabilité. Les collisions 2D échantillonnées ne couvrent pas le contact local ni les manipulations ; la recherche automatique reste limitée à 8 plis.
+- Tests : `npm test` (18 cas).

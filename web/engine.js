@@ -23,4 +23,22 @@ async function findSequence(s,{budget=160,samples=120,yieldTask=()=>Promise.reso
    const next=[...order,id],f=[...flips];f[id]=flip;const candidate={...s,order:[...next,...rest.filter(i=>i!==id)],flips:f};if(scan(candidate,order.length,samples).length===0){const result=await visit(next,f);if(result)return result;}}
   if(!limited&&!cancel())dead.add(key);return null;}
  const result=await visit([],Array(n).fill(false));return result?{status:'found',attempts,...result}:{status:cancel()?'cancelled':limited?'limit':'none',attempts};}
-return {findSequence,rad,rect,validPoly,punch,die,profile,frame,collisions,scan,segmentPoly};});
+// Convert an open, dimensioned centerline into the simulator's segment representation.
+function fromPoints(input){
+ if(!Array.isArray(input)||input.length<3||input.length>32||input.some(p=>!Array.isArray(p)||p.length!==2||p.some(v=>!Number.isFinite(v)||Math.abs(v)>100000)))throw Error('Saisir de 3 à 32 points valides.');
+ const pts=[];for(const p of input){if(pts.length&&norm(sub(p,pts[pts.length-1]))<.1)throw Error('Deux points sont trop proches (minimum 0,1 mm).');while(pts.length>=2){const a=sub(pts[pts.length-1],pts[pts.length-2]),b=sub(p,pts[pts.length-1]);if(Math.abs(cross(a,b))<=1e-9*norm(a)*norm(b)&&dot(a,b)>0)pts.pop();else break;}pts.push(p.slice());}
+ if(pts.length<3)throw Error('Le profil doit comporter au moins un pli.');
+ const lengths=[],turns=[];let prev;for(let i=1;i<pts.length;i++){const d=sub(pts[i],pts[i-1]),l=norm(d);if(l<.1||l>10000)throw Error('Longueur de côté hors limites (0,1 à 10 000 mm).');lengths.push(l);if(prev){const a=Math.atan2(cross(prev,d),dot(prev,d))*180/Math.PI;if(Math.abs(a)>170+1e-8)throw Error('Angle intérieur inférieur à 10°.');turns.push(Math.max(-170,Math.min(170,a)));}prev=d;}return {lengths,turns};
+}
+// Tangential polygon at a reference centerline radius. No empirical bend deduction.
+function radiusPlan({radius,sweep,insideAngle,count,mode='angle',reference='middle',thickness=0,lead=0,tail=0,sign=1}){
+ const ok=(x,a,b)=>Number.isFinite(x)&&x>=a&&x<=b;
+ if(!ok(radius,.1,10000)||!ok(sweep,.1,360)||!ok(thickness,0,50)||!ok(lead,0,10000)||!ok(tail,0,10000)||!['middle','inner','outer'].includes(reference)||![1,-1].includes(sign))throw Error('Dimensions ou angle total invalides.');
+ const r=radius+(reference==='inner'?thickness/2:reference==='outer'?-thickness/2:0);if(r<=0)throw Error('Rayon à mi-épaisseur non positif.');
+ if(mode==='angle'){if(!ok(insideAngle,10,179.9))throw Error('Angle intérieur par pli : 10 à 179,9°.');count=Math.max(1,Math.ceil(sweep/(180-insideAngle)-1e-10));}else if(mode!=='count')throw Error('Mode inconnu.');
+ if(!Number.isInteger(count)||count<1||count>30)throw Error('Le simulateur accepte de 1 à 30 plis.');
+ const delta=sweep/count;if(delta>170)throw Error('Déviation trop forte pour un seul pli.');const half=rad(delta/2),pitch=2*r*Math.tan(half),arc=r*rad(sweep),lengths=[lead+pitch/2,...Array(count-1).fill(pitch),tail+pitch/2],turns=Array(count).fill(sign*delta);
+ if(lengths.some(v=>!ok(v,.1,10000)))throw Error('Longueur de côté hors limites (0,1 à 10 000 mm).');
+ const stations=Array.from({length:count},(_,i)=>lead+(i+.5)*pitch);return {radius:r,count,delta,insideAngle:180-delta,pitch,arc,polygonLength:count*pitch+lead+tail,error:r*(1/Math.cos(half)-1),lengths,turns,stations};
+}
+return {fromPoints,radiusPlan,findSequence,rad,rect,validPoly,punch,die,profile,frame,collisions,scan,segmentPoly};});
