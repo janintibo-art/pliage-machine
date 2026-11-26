@@ -41,3 +41,6 @@ main{max-width:1650px;margin:auto;padding:18px clamp(12px,4vw,45px) 32px}.headin
 #sheetBendWarnings{color:var(--gold2);overflow-wrap:anywhere;line-height:1.55}#sheetBendTable{max-height:240px;margin-top:10px}#sheetBendTable td,#sheetBendTable th{font-size:12px}#sheetBendMode{border-color:#b99653}.sheet-main .legend{flex-wrap:wrap}
 
 #sheetBendHeading{scroll-margin-top:155px}
+
+/* V13 — folded sheet preview */
+.sheet-tabs{display:grid;grid-template-columns:1fr 1fr;margin:14px 0}.fold-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0}.fold-title h2{margin:4px 0}#sheetFoldCanvas{height:clamp(340px,50vh,620px);background:#12202b;border:1px solid var(--line);border-radius:12px;touch-action:none;cursor:grab}#sheetFoldCanvas:active{cursor:grabbing}.fold-transport button{flex:1 1 auto;font-size:12px}.fold-camera{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}#sheetFoldStatus{color:var(--gold2);min-height:1.5em}.sheet-main:has(#sheetFoldPanel:not([hidden])){position:static}@media(max-width:560px){#sheetFoldCanvas{height:310px}.fold-transport button{padding:8px 7px}.fold-title h2{font-size:14px}}
