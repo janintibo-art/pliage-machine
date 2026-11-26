@@ -57,3 +57,6 @@ main{max-width:1650px;margin:auto;padding:18px clamp(12px,4vw,45px) 32px}.headin
 .special-folds{margin:14px 0;padding:12px;border:1px solid #48616e;border-radius:12px;background:#12232e}.special-folds summary{cursor:pointer;color:#ffd16e;font-weight:700}.special-folds #sheetSpecialCanvas{height:155px;width:100%;background:#0d1921;border-radius:8px}.special-folds .fields{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))}
 
 .sequence-panel{margin-top:18px;padding:14px;border:1px solid #405666;border-radius:12px;background:#12212b}.sequence-panel .modebar{align-items:end}.sequence-report p{margin:7px 0;font-size:13px;font-variant-numeric:tabular-nums}.sequence-report{overflow-wrap:anywhere}.sequence-panel h2{color:#8be4eb}.sequence-panel button{margin-top:5px}
+
+/* V19 : poste de visualisation industrielle */
+.press-presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0}.press-presets button{font-size:12px;padding:9px 5px}.press-detail-note{margin:5px 0 10px;font-size:11px}#sheetPressCanvas{height:clamp(420px,65vh,760px);border:1px solid #47606e;border-radius:10px} @media(max-width:750px){#sheetPressCanvas{height:clamp(330px,55vh,520px)}}
