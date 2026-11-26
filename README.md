@@ -1,4 +1,6 @@
-# Pliage Machine — V1
+# Pliage Machine — V2
+
+V2 : correctif de compilation Android (SDK sans paquet obsolète `tools`), sans changement du moteur de simulation ni des données locales.
 
 Prototype autonome Android / Windows, en français, pour préparer et visualiser une séquence de pliage hors commande numérique. Aucun accès machine, aucune permission Internet Android.
 
