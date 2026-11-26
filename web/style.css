@@ -25,3 +25,6 @@ main{max-width:1650px;margin:auto;padding:18px clamp(12px,4vw,45px) 32px}.headin
 
 /* V8: a more compact simulation cockpit */
 .scene-overlay{padding:7px 10px;top:10px;left:10px;background:rgba(13,20,26,.82);max-width:calc(100% - 20px)}.scene-overlay strong{font-size:12px}.scene-overlay small{font-size:10px;letter-spacing:0}.scene-overlay .badge{display:none}.toolbar-group button{font-size:12px;padding:8px 11px}.toolbar-group #stepLabel{flex:1 1 100%;margin:0;text-align:left}.camera{padding-top:8px;padding-bottom:8px}#scene{height:clamp(360px,60vh,740px)}@media(max-width:900px){#scene{height:clamp(340px,56vh,520px)}}@media(max-width:560px){.scene-overlay{right:auto}.scene-overlay strong{display:none}#scene{height:350px}.toolbar-group{gap:5px}.toolbar-group button{padding:8px 9px}}
+
+/* V9: WebGL viewport behind the technical annotation layer */
+#sceneGL{position:absolute;inset:0;width:100%;height:100%;background:#101a22;pointer-events:none}#scene{position:relative;z-index:1}#scene.gl-active{background:transparent}#scene.orbit{touch-action:none;cursor:grab}#scene.orbit:active{cursor:grabbing}.scene-overlay{z-index:2}.scene-overlay small{line-height:1.4}
