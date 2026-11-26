@@ -116,3 +116,9 @@ Dans Tôle à plat > Sur la presse, le mode Habillage détaillé affiche des bri
 ## V22 — Diagnostic des interférences 3D
 
 Dans Tôle à plat → Sur la presse, choisir le seuil de proximité (0 à 20 mm, 0 désactive la mesure), puis 17, 33 ou 65 positions par mouvement. Les distances sont les distances entre les prismes triangulés de la tôle et des solides machine représentés, non les distances certifiées sur une presse réelle. Le seuil de recouvrement reste 0,02 mm. Un recouvrement près du pli actif peut être annoté comme contact possible, mais il reste rouge et compté dans tous les résultats. Aucun contact n'est automatiquement accepté. Les limites de calcul sont signalées ; la recherche de gamme conserve ses 9 positions et son classement précédent. Les rayons réels, la déformation et les collisions entre positions restent non résolus. Les réglages sont temporaires.
+
+## V24 — ergonomie
+- Navigation organisée par métier : Concevoir, Équiper, Simuler, Sauvegarder. Tôle complexe mène aux trois vues du même dessin.
+- Réglages du plan répartis en quatre panneaux contextuels (Contour, Découpes, Plis, Encoches) ; les modes de dessin ouvrent les paramètres correspondants. Boutons de retour au plan et d’accès aux contrôles.
+- Mode atelier : masquer temporairement la navigation principale pour travailler sur le dessin ou la simulation ; bouton de sortie dans la barre du plan. Vues pièce pliée et presse sur toute la largeur ; réglages caméra et recherche de gamme repliables. Aucun changement des formats de sauvegarde ou des moteurs de calcul.
+- Les modèles restent indicatifs et ne valident pas la sécurité du pliage réel.

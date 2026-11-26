@@ -2,7 +2,7 @@ plugins { id 'com.android.application' }
 android {
     namespace 'fr.pliagemachine.app'
     compileSdk 35
-    defaultConfig { applicationId 'fr.pliagemachine.app'; minSdk 23; targetSdk 34; versionCode 23; versionName '1.22' }
+    defaultConfig { applicationId 'fr.pliagemachine.app'; minSdk 23; targetSdk 34; versionCode 24; versionName '1.23' }
     sourceSets { main { assets.srcDirs = ['../../web'] } }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
