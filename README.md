@@ -52,3 +52,11 @@ Les segments de la fibre moyenne sont rigides et articulés aux lignes de pliage
 - Contrôle de collision avec la coupe rectangulaire du doigt et dépassement de la plage X ; pas de contrôle de mise en appui, de déplacement en Z, de support de butée, ni de trajectoire de manutention. La coupe ignore la position longitudinale des doigts (peut signaler des conflits qui n’existent pas en 3D). Ne jamais utiliser X calculé comme instruction machine.
 - Cinq références nominales supplémentaires (quatre AMADA AFH-ATC, une TRUMPF EV026). Sources affichées ; aucun contour constructeur automatique. Les valeurs du PDF AMADA 2021 ont été relevées dans son tableau textuel ; la planche graphique n’a pas pu être consultée.
 - 23 tests géométriques et 1 test d’intégration avec DOM/canvas simulés. Le rendu réel et les compilations natives restent à vérifier.
+
+## V10 — éditeur de profils et vues liées
+
+- Cotes/angles avec insertion de côtés ; dessin XY avec sélection, déplacement, insertion et suppression de sommets, saisie exacte et historique des opérations graphiques.
+- Cinq modèles de départ. Profil plié et flan à plat affichés simultanément, vue de volume extrudé indicative, tableau des plis numérotés.
+- Enregistrer et simuler transmet le profil au moteur existant. La séquence est conservée si les longueurs et angles restent exactement identiques.
+- Limites inchangées : 30 plis, section constante et lignes de pli parallèles ; pas de découpes, perçages ou plis non parallèles. Les positions à plat sont purement géométriques. Aucune validation de sécurité machine. Les modifications non enregistrées ne sont pas conservées en quittant l’éditeur.
+- Détails visuels supplémentaires de la presse, hors modèle de collision.
