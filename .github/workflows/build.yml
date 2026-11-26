@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --check web/app.js && node --check web/engine.js && node --check desktop/main.js && npm test
+      - run: node --check web/catalog.js && node --check web/app.js && node --check web/engine.js && node --check desktop/main.js && npm test
   android:
     name: APK Android
     needs: tests
@@ -33,11 +33,11 @@ jobs:
         with:
           gradle-version: '8.9'
       - run: gradle -p android assembleDebug --stacktrace
-      - run: mkdir -p output && cp android/app/build/outputs/apk/debug/app-debug.apk output/Pliage-Machine-v2.apk
+      - run: mkdir -p output && cp android/app/build/outputs/apk/debug/app-debug.apk output/Pliage-Machine-v3.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Pliage-Machine-APK-v2
-          path: output/Pliage-Machine-v2.apk
+          name: Pliage-Machine-APK-v3
+          path: output/Pliage-Machine-v3.apk
           if-no-files-found: error
   windows:
     name: EXE Windows
@@ -54,6 +54,6 @@ jobs:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - uses: actions/upload-artifact@v4
         with:
-          name: Pliage-Machine-EXE-v2
-          path: dist/Pliage-Machine-v2.exe
+          name: Pliage-Machine-EXE-v3
+          path: dist/Pliage-Machine-v3.exe
           if-no-files-found: error

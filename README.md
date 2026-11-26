@@ -27,3 +27,11 @@ Les segments de la fibre moyenne sont rigides et articulés aux lignes de pliage
 ## Compilation
 
 `npm test` teste le moteur sans dépendances. GitHub Actions compile un APK de développement (`assembleDebug`, SDK 35, Java 17, Gradle 8.9) et un EXE portable Electron x64 (Windows). Les fichiers sont publiés dans Artifacts du workflow. APK de test : la signature debug du runner peut varier entre les compilations ; sauvegarder le JSON avant changement de version. L'EXE n'est pas signé commercialement. L'interface et les compilations natives restent à valider sur appareils réels.
+
+## V3
+- Course maximale et longueur utile, bibliothèque de 50 presses. Valeurs de départ (250 / 3000 mm) à remplacer par les cotes réelles, y compris après migration V1/V2.
+- Perspective orientable, zoom, dimensions longitudinales illustratives. Contrôle toujours en coupe, col de cygne traité de manière conservatrice, pas de simulation des montants en 3D.
+- Inversion avant/arrière indépendante pour chaque pli. Recherche bornée à 8 plis et 160 essais, 121 positions par essai ; pas de contrôle de manutention ou de dépliage/retrait.
+- 8 références nominales constructeur ; pas de géométrie fabricant certifiée. Les profils nécessitent une saisie utilisateur avant montage. Les sources sont affichées dans l’éditeur ; contours à vérifier.
+- Création de contour par points sur grille, saisie des coordonnées toujours possible.
+- Sauvegardes JSON V1/V2 conservées ; profils de presse inclus dans les exports.
