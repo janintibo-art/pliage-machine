@@ -100,3 +100,9 @@ Dans Tôle à plat → Sur la presse → Recherche automatique de gamme 3D. De 1
 
 ### V19 — Habillage de la presse pour les pièces complexes
 Dans Tôle à plat > Sur la presse, le mode Habillage détaillé affiche des brides, vis, rails, un socle, des carénages et un pupitre illustratifs. La peau de tôle est extrudée visuellement à l'épaisseur nominale, avec des jonctions à angle vif. Les vues Perspective, Face et Profil sont accessibles en un clic. Désactiver l'habillage pour retrouver la géométrie technique du modèle. Les accessoires décoratifs ne sont pas inclus dans les collisions ; les résultats du moteur V18 restent inchangés. Aucun pilotage de machine ni validation de sécurité.
+
+### V20 — Catalogue visuel et import DXF d'outillage
+- 25 fiches nominales (13 anciennes + 12 nouvelles), sources publiques AMADA/TRUMPF. Les fiches sans contour restent non montables ; leur schéma n'est pas une géométrie constructeur.
+- Recherche par référence, marque et type ; aperçus en coupe et extrusion illustrative des profils enregistrés.
+- Import DXF ASCII d'un contour fermé unique, sans découpe, avec unité, calque et origine XY renseignés par l'utilisateur ; 100 sommets maximum. Les arcs sont polygonalisés. Vérifier la géométrie et l'origine avant enregistrement.
+- Aucun changement de moteur de pliage, de collision ou de format de sauvegarde. Les longueurs d'aperçu ne sont pas des longueurs de montage.
