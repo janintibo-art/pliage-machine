@@ -63,3 +63,6 @@ Les segments de la fibre moyenne sont rigides et articulés aux lignes de pliage
 
 ## V11 — Tôle à plat
 Éditeur indépendant des profils de simulation : contour polygonal fermé, coordonnées XY, perçages et rectangles arrondis, encoches de bord, annulation/rétablissement, enregistrement dans le projet JSON. Deux exemples fictifs non cotés pour la fabrication. La validation vérifie les croisements, les découpes hors contour et leurs chevauchements avec des arcs polygonalisés ; elle ne constitue pas une validation industrielle. Pas encore de pliage multidirectionnel, de collision 3D ni de transfert de ce plan à la presse.
+
+## V12 — axes de pli multidirectionnels
+Dans Tôle à plat, tracer A puis B (accrochage au bord à 12 pixels, sinon à la grille), ou saisir les quatre coordonnées. Angle intérieur, signe de rotation autour de A→B et côté mobile dans le plan XY. Liste réordonnable, modification, suppression, annulation et export JSON. Les sauvegardes V11 sans `bends` restent valides. 60 axes max. Les axes hors matière extérieure, superposés ou dégénérés sont refusés. Axes partiels, intersections et traversées de découpes sont signalés, non résolus. Les angles proches de zéro ne modélisent pas un pli écrasé. Pas encore de séparation de faces, de pliage 3D ou de contrôle de fabrication pour ce plan.
