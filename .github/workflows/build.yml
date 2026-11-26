@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --check web/fold3d.js && node --check web/fold3d-ui.js && node --check web/flat.js && node --check web/flat-ui.js && node --check web/webgl.js && node --check web/catalog.js && node --check web/app.js && node --check web/engine.js && node --check desktop/main.js && npm test
+      - run: node --check web/press3d.js && node --check web/press3d-ui.js && node --check web/fold3d.js && node --check web/fold3d-ui.js && node --check web/flat.js && node --check web/flat-ui.js && node --check web/webgl.js && node --check web/catalog.js && node --check web/app.js && node --check web/engine.js && node --check desktop/main.js && npm test
   android:
     name: APK Android
     needs: tests
